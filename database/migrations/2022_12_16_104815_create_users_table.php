@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('email');
             $table->string('password');
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('gender')->nullable();
             $table->string('city');
             $table->foreignId('company_id')->constrained();
+            $table->timestamps();
         });
     }
 

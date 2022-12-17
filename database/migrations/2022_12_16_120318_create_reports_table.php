@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->unsignedBigInteger('report_id');
+            $table->unsignedBigInteger('reported_id');
             $table->integer('type');
             $table->integer('status');
             $table->timestamps();
