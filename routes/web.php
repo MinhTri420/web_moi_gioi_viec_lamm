@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -15,16 +16,12 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/login', [AuthController::class, 'login']);
-Route::get('/', function () {
-    return view('layout.master');
-});
+Route::get('/home', [AuthController::class, 'home']) ->name('home');
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'registering'])->name('auth.registering');
 
 Route::get('/auth/redirect/{provider}', function ($provider) {
-    return  Socialite::driver($provider)->redirect();
+    return Socialite::driver($provider)->redirect();
 })->name('auth.redirect');
-
-Route::get('/auth/callback/{provider}', function ($provider) {
-    $user = Socialite::driver($provider)->user();
-    dd($user); 
-})->name('auth.callback');
+Route::get('/auth/callback/{provider}', [AuthController::class, 'callback'])->name('auth.callback');

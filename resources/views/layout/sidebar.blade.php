@@ -55,8 +55,7 @@
                                     <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false"
                                        aria-controls="sidebarDashboards" class="side-nav-link">
                                         <i class="uil-home-alt"></i>
-                                        <span class="badge bg-success float-end">5</span>
-                                        <span> Dashboards </span>
+                                        <span> Users </span>
                                     </a>
 
                                 </li>
@@ -75,13 +74,6 @@
                 </div>
             </div>
             <div class="simplebar-placeholder" style="width: auto; height: 100px;"></div>
-        </div>
-        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-            <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
-        </div>
-        <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
-            <div class="simplebar-scrollbar"
-                 style="height: 0px; transform: translate3d(0px, 0px, 0px); display: none;"></div>
         </div>
     </div>
 </div>
