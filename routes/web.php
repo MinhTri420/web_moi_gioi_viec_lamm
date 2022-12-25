@@ -16,8 +16,11 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/home', [AuthController::class, 'home']) ->name('home');
+Route::get('/', function(){
+    return view('layout.master');
+}) ->name('home');
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'registering'])->name('auth.registering');
 

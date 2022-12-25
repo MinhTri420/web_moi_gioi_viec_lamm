@@ -78,6 +78,8 @@
                                        checked>
                                 <label class="custom-control-label" for="applicant">Applicant</label>
                             </div>
+                        </div>
+                        <div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="hr" name="role" class="custom-control-input" value="2">
                                 <label class="custom-control-label" for="hr">HR</label>

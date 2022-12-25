@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRoleEnum;
 use App\Http\Requests\RegisteringRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,16 +13,20 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    public function home()
-    {
-        return view('layout.master');
-    }
-
     public function login()
     {
         return view('auth.login');
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+
+        return redirect()->route('auth.login');
+    }
     public function register()
     {
         return view('auth.register');
@@ -50,18 +55,22 @@ class AuthController extends Controller
         $user->save();
 
 
-        Auth::login($user);
+        auth()->login($user );
 
-        if ($checkExist){
-            return redirect()->route('home');
+        if ($checkExist) {
+            $role = strtolower(UserRoleEnum::getKeys($user->role)[0]);
+
+            return redirect()->route("$role.home");
         }
-        return redirect()->route('auth.register');
+
+        return redirect()->route('register');
+
     }
 
     public function registering(RegisteringRequest $request)
     {
-        $password = Hash::make($request->password);
-        $role = $request->role;
+        $password = Hash::make($request->get('password'));
+        $role = $request->get('role');
 
         if (auth()->check()) {
             User::where('id', auth()->user()->id)
@@ -78,6 +87,6 @@ class AuthController extends Controller
             ]);
             Auth::login($user);
         }
-        return redirect()->route('home');
+        return redirect()->route("$role.home");
     }
 }

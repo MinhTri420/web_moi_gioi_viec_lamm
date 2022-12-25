@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         $arr = [];
         $faker = Factory::create();
         $companies = Company::query()->pluck('id')->toArray();
-        for ($i = 1; $i <= 100000; $i++) {
+        for ($i = 1; $i <= 1000; $i++) {
             $arr [] = [
                 'name' => $faker->firstName.' '.$faker->lastName,
                 'avatar' => $faker->imageUrl,
@@ -36,10 +36,10 @@ class UserSeeder extends Seeder
                 'city' => $faker->city,
                 'company_id' => $companies[array_rand($companies)],
             ];
-            if ($i % 1000 === 0) {
+//            if ($i % 1000 === 0) {
                 User::insert($arr);
                 $arr = [];
-            }
+//            }
         }
     }
 }

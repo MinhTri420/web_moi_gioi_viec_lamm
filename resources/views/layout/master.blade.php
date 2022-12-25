@@ -2,7 +2,7 @@
       data-sidenav-color="dark" data-layout-position="fixed" class="menuitem-active">
 <head>
     <meta charset="utf-8">
-    <title>Dashboard |  {{ config('app.name') }}</title>
+    <title>{{ $title ?? ''}} -  {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
     <meta content="Coderthemes" name="author">
@@ -33,15 +33,19 @@
     <!-- ========== Left Sidebar Start ========== -->
     @include('layout.sidebar')
     <!-- ========== Left Sidebar End ========== -->
-    <!-- ============================================================== -->
-    <!-- Start Page Content here -->
-    <!-- ============================================================== -->
     <div class="content-page">
         <div class="content">
 
             <!-- Start Content-->
             <div class="container-fluid">
-                @yield('layout.footer')
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <h4 class="page-title">{{ $title ?? '' }}</h4>
+                        </div>
+                    </div>
+                </div>
+                @yield('content')
             <!-- container -->
         </div>
         <!-- content -->

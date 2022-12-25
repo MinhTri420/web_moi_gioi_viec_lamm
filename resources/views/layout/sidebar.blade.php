@@ -51,23 +51,13 @@
 
                                 <li class="side-nav-title side-nav-item">Navigation</li>
 
-                                <li class="side-nav-item menuitem-active">
-                                    <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false"
-                                       aria-controls="sidebarDashboards" class="side-nav-link">
+                                <li class="side-nav-item">
+                                    <a href="{{ route('admin.users.index') }}"  class="side-nav-link">
                                         <i class="uil-home-alt"></i>
                                         <span> Users </span>
                                     </a>
-
                                 </li>
-
-
                             </ul>
-                            <!--- End Sidemenu -->
-
-                            <!-- Help Box -->
-
-                            <!-- end Help Box -->
-
                             <div class="clearfix"></div>
                         </div>
                     </div>
