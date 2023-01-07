@@ -20,6 +20,7 @@ class User extends Model implements AuthenticatableContract
         'name',
         'avatar',
         'password',
+        'company_id',
     ];
 
     public function company()
