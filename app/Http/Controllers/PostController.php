@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\CheckSlugRequest;
+use App\Http\Requests\Post\GenerateSlugRequest;
 use App\Models\Post;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Throwable;
 
 class PostController extends Controller
 {
     use ResponseTrait;
+
     private object $model;
 
     public function __construct()
@@ -27,11 +32,26 @@ class PostController extends Controller
         }
 //        return $this->errorResponse('Import failed');
 
-        $arr['data']       = $data->getCollection();
+        $arr['data'] = $data->getCollection();
         $arr['pagination'] = $data->linkCollection();
 
         return $this->successResponse($arr);
 
     }
 
+    public function generateSlug(GenerateSlugRequest $request)
+    {
+        try {
+            $title = $request->get('title');
+            $slug = SlugService::createSlug(Post::class,'slug',$title);
+
+            return $this->successResponse($slug);
+        } catch (Throwable $e){
+            return $this->errorResponse();
+        }
+    }
+    public function checkSlug(CheckSlugRequest $request)
+    {
+            return $this->successResponse();
+    }
 }
